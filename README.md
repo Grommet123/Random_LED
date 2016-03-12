@@ -1,3 +1,3 @@
 # Random_LED
 
-Random turn on one of X LED's when a button is pressed.
+Random turn on one of 6 LED's when a button is pressed.
