@@ -7,6 +7,7 @@
 */
 
 // Set up constants
+//#define SELF_TEST     // Uncomment to test all LEDs and input switch
 #define LED1_PIN 2      // The LED output pin numbers
 #define LED2_PIN 3
 #define LED3_PIN 4
@@ -38,15 +39,37 @@ void setup() {
 }
 
 void loop() {
+
   // Define varables
   int inputSwitch = 0;
   long randNumber;
 
-  // Get random number from 1 to 6
-  randNumber = random(MIN, MAX);
-
   // Get switch input
   inputSwitch = digitalRead(SWITCH_IN);
+
+#ifdef SELF_TEST
+
+  // Get switch input
+  if (inputSwitch == HIGH) {
+    digitalWrite(LED1_PIN, HIGH);      // Turn the LED on
+    digitalWrite(LED2_PIN, HIGH);      // Turn the LED on
+    digitalWrite(LED3_PIN, HIGH);      // Turn the LED on
+    digitalWrite(LED4_PIN, HIGH);      // Turn the LED on
+    digitalWrite(LED5_PIN, HIGH);      // Turn the LED on
+    digitalWrite(LED6_PIN, HIGH);      // Turn the LED on
+  }
+  else {
+    digitalWrite(LED1_PIN, LOW);      // Turn the LED off
+    digitalWrite(LED2_PIN, LOW);      // Turn the LED off
+    digitalWrite(LED3_PIN, LOW);      // Turn the LED off
+    digitalWrite(LED4_PIN, LOW);      // Turn the LED off
+    digitalWrite(LED5_PIN, LOW);      // Turn the LED off
+    digitalWrite(LED6_PIN, LOW);      // Turn the LED off
+  }
+#else
+
+  // Get random number from 1 to 6
+  randNumber = random(MIN, MAX);
 
   // if switch is not depressed, then turn on a random LED (and turn off the others)
   if (inputSwitch == LOW) {
@@ -108,4 +131,5 @@ void loop() {
         break;
     }
   }
+#endif
 }
